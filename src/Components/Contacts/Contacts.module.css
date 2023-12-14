@@ -1,0 +1,8 @@
+.contact input,
+.contact textarea {
+    padding: 10px;
+    background-color: var(--form-color);
+}
+.contact textarea {
+    min-height: 160px;
+}

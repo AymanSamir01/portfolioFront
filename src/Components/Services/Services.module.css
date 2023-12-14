@@ -1,0 +1,13 @@
+/* start services section */
+.services .icon {
+    width: 85px;
+    height: 85px;
+    background-color: var(--bg-section-color);
+    margin: 20px auto;
+    transition: var(--main-transition);
+}
+.services .item:hover .icon {
+    color: var(--white-color);
+    background-color: var(--main-color);
+}
+/* end services section */
