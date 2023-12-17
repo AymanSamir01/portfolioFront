@@ -42,8 +42,11 @@ a {
     color: var(--paragraph-color);
     line-height: 1.8;
 }
-.nav-item {
+.nav-item , .links {
     cursor: pointer;
+}
+.rtl-direction {
+    direction: rtl;
 }
 /* end global rules */
 /* start scrolling */
@@ -53,6 +56,29 @@ a {
 }  
 .navbar.scrolled {
     background-color: #3F3D56;
+}
+.dropdown-menu[data-bs-popper] {
+    top: 48px;
+    left: -125px;
+}
+@media all and (max-width: 992px){
+    .dropdown-menu[data-bs-popper] {
+        top: 37px;
+        left: -125px;
+    }
+}
+.dropdown-toggle::after {
+    display: none;
+}
+@media all and (min-width: 991px){
+    .dropWeb {
+        display: none !important;
+    }
+}
+@media all and (max-width: 992px){
+    .dropMobile {
+        display: none !important;
+    }
 }
 /* end scrolling */
 .services .item .icon ,
@@ -80,5 +106,8 @@ a {
 .accordion {
     --bs-accordion-active-bg: #8396b3;
     --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgb(85 118 166 / 25%);
+}
+.accordion-header button {
+    position: relative;
 }
 /* end Faqs */

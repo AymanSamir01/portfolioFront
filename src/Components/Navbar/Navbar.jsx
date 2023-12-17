@@ -1,18 +1,35 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-// import { Link, NavLink } from "react-router-dom";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
       setScrolling(true);
+      document
+        .getElementById("navbarSupportedContent")
+        .classList.remove("show");
     } else {
       setScrolling(false);
+      document
+        .getElementById("navbarSupportedContent")
+        .classList.remove("show");
     }
   };
+
+  // change background color of menu when i click on it without scroll
+  function changeBackground() {
+    const navbar = document.getElementById("navbar-example2");
+    if (navbar.classList.contains("scrolled") && window.scrollY === 0) {
+      navbar.classList.remove("scrolled");
+    } else {
+      navbar.classList.add("scrolled");
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -30,23 +47,85 @@ export default function Navbar() {
             scrolling ? "scrolled" : ""
           } navbar-expand-lg  navbar-dark fixed-top`}
         >
-          <div className="container">
-            <Link className="navbar-brand fw-bold links" to="/">
-              Portfolio
+          <div
+            className={`${
+              i18n.language === "ar" ? "rtl-direction" : ""
+            } container d-flex flex-row`}
+          >
+            <Link className="navbar-brand fw-bold links " to="home">
+              {t("portfolio")}
             </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
+            <div className="dropWeb d-flex align-items-center gap-4 text-white">
+              <div className="nav-item dropdown">
+                <div
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="fa-solid fa-globe fs-4"></i>
+                </div>
+                <ul
+                  className={`dropdown-menu ${
+                    i18n.language === "ar" ? "start-0" : ""
+                  }`}
+                >
+                  <li>
+                    <p
+                      onClick={() => {
+                        i18n.changeLanguage("en");
+                        const navbar =
+                          document.getElementById("navbar-example2");
+                        if (
+                          navbar.classList.contains("scrolled") &&
+                          window.scrollY === 0
+                        ) {
+                          navbar.classList.remove("scrolled");
+                        }
+                      }}
+                      className="dropdown-item mb-0"
+                    >
+                      EN
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      onClick={() => {
+                        i18n.changeLanguage("ar");
+                        const navbar =
+                          document.getElementById("navbar-example2");
+                        if (
+                          navbar.classList.contains("scrolled") &&
+                          window.scrollY === 0
+                        ) {
+                          navbar.classList.remove("scrolled");
+                        }
+                      }}
+                      className="dropdown-item mb-0"
+                    >
+                      AR
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div
+                className=""
+                type="button"
+                onClick={() => changeBackground()}
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i className="fa-solid fa-bars fs-4"></i>
+              </div>
+            </div>
             <div
-              className="collapse navbar-collapse"
+              className={`collapse navbar-collapse ${
+                i18n.language === "ar" ? " flex-grow-0" : ""
+              }`}
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav  ms-auto mb-2 mb-lg-0">
@@ -56,11 +135,11 @@ export default function Navbar() {
                     to="slider"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                     aria-current="page"
                   >
-                    Home
+                    {t("home")}
                   </Link>
                 </li>
                 <li className="nav-item me-2">
@@ -69,10 +148,10 @@ export default function Navbar() {
                     to="about"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                   >
-                    About
+                    {t("about")}
                   </Link>
                 </li>
                 <li className="nav-item me-2">
@@ -81,10 +160,10 @@ export default function Navbar() {
                     to="services"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                   >
-                    Services
+                    {t("services")}
                   </Link>
                 </li>
                 <li className="nav-item me-2">
@@ -93,10 +172,10 @@ export default function Navbar() {
                     to="faqs"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                   >
-                    FAQs
+                    {t("faqs")}
                   </Link>
                 </li>
                 <li className="nav-item me-2">
@@ -105,10 +184,10 @@ export default function Navbar() {
                     to="clients"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                   >
-                    Clients
+                    {t("clients")}
                   </Link>
                 </li>
                 <li className="nav-item me-2">
@@ -117,11 +196,48 @@ export default function Navbar() {
                     to="contacts"
                     spy={true}
                     smooth={true}
-                    offset={-30}
-                    duration={300}
+                    offset={0}
+                    duration={150}
                   >
-                    Contact
+                    {t("contact")}
                   </Link>
+                </li>
+                <li className="nav-item dropdown dropMobile">
+                  <div
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i className="fa-solid fa-globe fs-4"></i>
+                  </div>
+                  <ul
+                    className={`dropdown-menu ${
+                      i18n.language === "ar" ? "start-0" : ""
+                    }`}
+                  >
+                    <li>
+                      <p
+                        onClick={() => {
+                          i18n.changeLanguage("en");
+                        }}
+                        className="dropdown-item mb-0"
+                      >
+                        EN
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        onClick={() => {
+                          i18n.changeLanguage("ar");
+                        }}
+                        className="dropdown-item mb-0"
+                      >
+                        AR
+                      </p>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>

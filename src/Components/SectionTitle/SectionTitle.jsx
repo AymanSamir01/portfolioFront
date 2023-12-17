@@ -5,7 +5,7 @@ export default function SectionTitle({ title, description }) {
   return (
     <>
       <div className={Style.sectionTitle}>
-        <h2 className="fw-bolder">{title}.</h2>
+        <h2 className="fw-bolder">{title}</h2>
         <p>{description}</p>
       </div>
     </>

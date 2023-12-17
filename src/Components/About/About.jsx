@@ -1,10 +1,19 @@
 import React from "react";
 import Style from "./About.module.css";
 import img from "../../Assets/Images/undraw_portfolio_feedback_6r17.png";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-scroll";
+
 export default function About() {
+  const [t, i18n] = useTranslation();
   return (
     <>
-      <section className={`${Style.about} section-padding`} id="about">
+      <section
+        className={`${Style.about} ${
+          i18n.language === "ar" ? "rtl-direction" : ""
+        } section-padding`}
+        id="about"
+      >
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5">
@@ -14,7 +23,7 @@ export default function About() {
             </div>
             <div className="col-lg-7 p-xl-3 mt-5 mt-lg-0">
               <div>
-                <h3 className="fw-bold">About Us.</h3>
+                <h3 className="fw-bold">{t("about us")}</h3>
                 <span className="sub-title text-uppercase d-inline-block mb-4">
                   ui / ux designer &amp; web developer
                 </span>
@@ -39,9 +48,19 @@ export default function About() {
                 </p>
 
                 <div>
-                  <button className="btn btn-dark py-2 px-3" href="#">
-                    Contact Us
-                  </button>
+                  <Link
+                    className="nav-link"
+                    to="contacts"
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={150}
+                    aria-current="page"
+                  >
+                    <button className="btn btn-dark py-2 px-3" href="#">
+                      {t("contact us")}
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

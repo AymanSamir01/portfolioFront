@@ -1,11 +1,18 @@
 import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Style from "./Services.module.css";
+import { useTranslation } from "react-i18next";
 export default function Services() {
+  const [t, i18n] = useTranslation();
   return (
     <>
-      <section className={`${Style.Services} py-5 bg-section`} id="services">
-        <SectionTitle title="Services" />
+      <section
+        className={`${Style.Services} ${
+          i18n.language == "ar" ? "rtl-direction" : ""
+        } py-5 bg-section`}
+        id="services"
+      >
+        <SectionTitle title={t("services")} />
         <div className="container">
           <div className="row g-4 mb-3">
             <div className="col-md-6 col-lg-4 col-xl-3">
